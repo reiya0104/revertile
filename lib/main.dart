@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'board.dart';
 
 void main() {
@@ -17,9 +18,7 @@ class MyApp extends StatelessWidget {
           title: const Text('Revertile'),
         ),
         body: const Center(
-          child: Board(
-            pieceSize: 60, // ピースのサイズを変更する
-          ),
+          child: Board(),
         ),
       ),
     );
