@@ -7,12 +7,15 @@ class Board extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<int> whitePieceIndexes = [27, 36];
+    final List<int> blackPieceIndexes = [28, 35];
+
     return GridView.count(
       crossAxisCount: 8,
       children: List.generate(64, (index) {
-        if (index == 27 || index == 36) {
+        if (whitePieceIndexes.contains(index)) {
           return const Piece(color: PieceColor.white);
-        } else if (index == 28 || index == 35) {
+        } else if (blackPieceIndexes.contains(index)) {
           return const Piece(color: PieceColor.black);
         } else {
           return Container();
