@@ -7,20 +7,17 @@ class Board extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pieces = List.generate(
-      64,
-      (index) => index % 2 == 0 ? PieceColor.black : PieceColor.white,
-    );
-    return GridView.builder(
-      itemCount: 64,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 8,
-      ),
-      itemBuilder: (context, index) {
-        return Piece(
-          color: pieces[index],
-        );
-      },
+    return GridView.count(
+      crossAxisCount: 8,
+      children: List.generate(64, (index) {
+        if (index == 27 || index == 36) {
+          return const Piece(color: PieceColor.white);
+        } else if (index == 28 || index == 35) {
+          return const Piece(color: PieceColor.black);
+        } else {
+          return Container();
+        }
+      }),
     );
   }
 }
