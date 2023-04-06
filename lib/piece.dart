@@ -1,20 +1,30 @@
 import 'package:flutter/material.dart';
 
+enum PieceColor {
+  black,
+  white,
+}
+
 class Piece extends StatelessWidget {
-  final bool isBlack;
-  const Piece({required this.isBlack, Key? key}) : super(key: key);
+  const Piece({
+    Key? key,
+    required this.color,
+  }) : super(key: key);
+
+  final PieceColor color;
 
   @override
   Widget build(BuildContext context) {
-    final color = isBlack ? Colors.black : Colors.white;
-    final borderColor = isBlack ? Colors.white : Colors.black;
     return Container(
-      width: 32.0,
-      height: 32.0,
+      width: 50,
+      height: 50,
       decoration: BoxDecoration(
-        color: color,
+        color: color == PieceColor.black ? Colors.black : Colors.white,
         shape: BoxShape.circle,
-        border: Border.all(color: borderColor, width: 2.0),
+        border: Border.all(
+          width: 1,
+          color: Colors.grey,
+        ),
       ),
     );
   }
