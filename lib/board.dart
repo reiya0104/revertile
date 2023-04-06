@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'grid_painter.dart';
 import 'piece.dart';
 
 class Board extends StatefulWidget {
@@ -37,6 +38,7 @@ class _BoardState extends State<Board> {
           _boardSize = constraints.maxWidth;
         }
         _pieceSize = _boardSize / 8;
+
         return Container(
           decoration: BoxDecoration(
             border: Border.all(
@@ -47,23 +49,36 @@ class _BoardState extends State<Board> {
           ),
           width: _boardSize,
           height: _boardSize,
-          child: GridView.count(
-            crossAxisCount: 8,
-            children: List.generate(64, (index) {
-              if (whitePieceIndexes.contains(index)) {
-                return Piece(
-                  color: PieceColor.white,
-                  size: _pieceSize,
-                );
-              } else if (blackPieceIndexes.contains(index)) {
-                return Piece(
-                  color: PieceColor.black,
-                  size: _pieceSize,
-                );
-              } else {
-                return Container();
-              }
-            }),
+          child: Stack(
+            children: [
+              GridView.count(
+                crossAxisCount: 8,
+                children: List.generate(64, (index) {
+                  if (whitePieceIndexes.contains(index)) {
+                    return Piece(
+                      color: PieceColor.white,
+                      size: _pieceSize,
+                    );
+                  } else if (blackPieceIndexes.contains(index)) {
+                    return Piece(
+                      color: PieceColor.black,
+                      size: _pieceSize,
+                    );
+                  } else {
+                    return Container();
+                  }
+                }),
+              ),
+              CustomPaint(
+                painter: GridPainter(
+                  boardSize: _boardSize,
+                  gridCount: 8,
+                  boxBorderWidth: 2,
+                  gridBorderWidth: 1.0,
+                  gridColor: Colors.black,
+                ),
+              ),
+            ],
           ),
         );
       },
