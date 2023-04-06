@@ -43,6 +43,7 @@ class _BoardState extends State<Board> {
               color: Colors.black,
               width: 2,
             ),
+            color: Colors.green,
           ),
           width: _boardSize,
           height: _boardSize,
