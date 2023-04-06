@@ -17,7 +17,9 @@ class MyApp extends StatelessWidget {
           title: const Text('Revertile'),
         ),
         body: const Center(
-          child: Board(),
+          child: Board(
+            pieceSize: 60, // ピースのサイズを変更する
+          ),
         ),
       ),
     );

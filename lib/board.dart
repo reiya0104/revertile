@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 import 'piece.dart';
 
 class Board extends StatelessWidget {
-  const Board({Key? key}) : super(key: key);
+  const Board({
+    Key? key,
+    required this.pieceSize, // ピースのサイズを追加する
+  }) : super(key: key);
+
+  final double pieceSize; // ピースのサイズを追加する
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +19,15 @@ class Board extends StatelessWidget {
       crossAxisCount: 8,
       children: List.generate(64, (index) {
         if (whitePieceIndexes.contains(index)) {
-          return const Piece(color: PieceColor.white);
+          return Piece(
+            color: PieceColor.white,
+            size: pieceSize, // ピースのサイズを渡す
+          );
         } else if (blackPieceIndexes.contains(index)) {
-          return const Piece(color: PieceColor.black);
+          return Piece(
+            color: PieceColor.black,
+            size: pieceSize, // ピースのサイズを渡す
+          );
         } else {
           return Container();
         }
